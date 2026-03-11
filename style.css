@@ -1,0 +1,241 @@
+/* ADSTalks — style.css | Mobile First */
+
+/* ── Variáveis ── */
+:root {
+  --roxo:    #7c3aed;
+  --roxo-c:  #a855f7;
+  --bg:      #0d0b14;
+  --card:    #1a1728;
+  --borda:   #2e2545;
+  --texto:   #f0ecff;
+  --muted:   #8b7fb5;
+  --erro:    #f87171;
+  --vip:     #facc15;
+  --conv:    #60a5fa;
+  --ok:      #4ade80;
+}
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+:focus-visible { outline: 2px solid var(--roxo-c); outline-offset: 3px; }
+
+/* ── Header ── */
+header {
+  background: var(--card);
+  border-bottom: 1px solid var(--borda);
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+header h1 { font-size: 1.8rem; color: var(--roxo-c); margin-bottom: 0.25rem; }
+header p  { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+#datetime  { font-size: 0.8rem; margin-top: 0.4rem; }
+
+/* ── Banner boas-vindas ── */
+.banner {
+  background: var(--roxo);
+  color: #fff;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  animation: slide-down 0.4s ease;
+}
+@keyframes slide-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Main ── */
+main {
+  flex: 1;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Seções ── */
+section {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+section h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--roxo-c); }
+
+/* ── Formulário ── */
+form { display: flex; flex-direction: column; gap: 0.6rem; }
+
+label { font-size: 0.85rem; color: var(--muted); }
+
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--texto);
+  cursor: pointer;
+  margin-top: 0.2rem;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  background: #12101c;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  color: var(--texto);
+  font-size: 0.95rem;
+  padding: 0.65rem 0.85rem;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input:hover, select:hover { border-color: var(--roxo); }
+input:focus, select:focus  { border-color: var(--roxo-c); outline: none; box-shadow: 0 0 0 3px rgba(168,85,247,0.2); }
+input.invalido, select.invalido { border-color: var(--erro); }
+
+/* Força fundo escuro nas opções do select */
+select option { background: #1a1728; color: var(--texto); }
+
+.erro { font-size: 0.78rem; color: var(--erro); min-height: 1em; }
+
+/* Tópicos */
+#topicos {
+  border: 1px dashed var(--borda);
+  border-radius: 8px;
+  padding: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#topicos legend { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; width: 100%; }
+
+#topicos label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--texto);
+  cursor: pointer;
+  width: calc(50% - 0.25rem);
+}
+
+/* Botão */
+button[type="submit"] {
+  margin-top: 0.4rem;
+  background: var(--roxo);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  width: 100%;
+}
+button[type="submit"]:hover  { background: var(--roxo-c); }
+button[type="submit"]:active { transform: scale(0.98); }
+
+/* ── Lista ── */
+#vazio { font-size: 0.88rem; color: var(--muted); font-style: italic; }
+ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+/* Card do inscrito */
+.card {
+  background: #12101c;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  animation: entrar 0.3s ease;
+}
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Destaque VIP e Convidado (aplicado via JS) */
+.card.vip      { border-left: 4px solid var(--vip); }
+.card.convidado{ border-left: 4px solid var(--conv); }
+
+.card-nome { font-weight: 700; font-size: 1rem; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+}
+.badge-padrao   { background: rgba(139,127,181,0.2); color: var(--muted); }
+.badge-vip      { background: rgba(250,204,21,0.2);  color: var(--vip); }
+.badge-convidado{ background: rgba(96,165,250,0.2);  color: var(--conv); }
+.badge-presente { background: rgba(74,222,128,0.2);  color: var(--ok); }
+.badge-ausente  { background: rgba(248,113,113,0.15);color: var(--erro); }
+
+.card-info { font-size: 0.82rem; color: var(--muted); }
+
+.btn-remover {
+  align-self: flex-end;
+  background: transparent;
+  border: 1px solid rgba(248,113,113,0.3);
+  color: var(--erro);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.25rem;
+}
+.btn-remover:hover { background: rgba(248,113,113,0.1); }
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  border-top: 1px solid var(--borda);
+}
+
+/* ── Tablet (≥ 600px) ── */
+@media (min-width: 600px) {
+  main { padding: 1.75rem; }
+  button[type="submit"] { width: auto; min-width: 200px; }
+  #topicos label { width: calc(33% - 0.35rem); }
+}
+
+/* ── Desktop (≥ 860px) ── */
+@media (min-width: 860px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding: 2rem;
+  }
+}
